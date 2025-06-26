@@ -46,7 +46,9 @@ header p {
 
 header a {
   text-align: right;
-  color:#000000
+  padding: 12px 24px;
+  background-color:#000
+  color:#00ff88
 }
 
 /* Main layout */
