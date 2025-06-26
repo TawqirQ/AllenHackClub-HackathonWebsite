@@ -44,9 +44,9 @@ header p {
   margin: 0;
 }
 
-.a {
+header a {
   text-align: right;
-  color:#00ff88
+  color:#000000
 }
 
 /* Main layout */
