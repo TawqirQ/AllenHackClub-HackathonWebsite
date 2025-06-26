@@ -43,8 +43,7 @@ header p {
   color: #ffffff;
   margin: 0;
 }
-
-header a {
+ a {
   text-align: right;
   padding: 12px 24px;
   background-color:#000
