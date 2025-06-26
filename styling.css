@@ -44,12 +44,7 @@ header p {
   margin: 0;
 }
 
-.login {
-  text-align: right;
-  padding: 12px 24px;
-  background-color:#000;
-  color:#00ff88
-}
+
 
 /* Main layout */
 main {
