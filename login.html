@@ -5,105 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - AHC Hackathon 2025</title>
     <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
         body {
             margin: 0;
-            overflow: hidden;
-            background: #f4f4f4;
-            font-family: 'Arial', sans-serif;
+            padding: 0;
+            background: linear-gradient(to bottom, #f7f8fa, #f4f4f4);
+            color: #000;
+            overflow-x: hidden;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+
+        /* Snowflake background animation */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100vw;
             height: 100vh;
+            pointer-events: none;
+            display: block;
         }
+
+        /* Snow Desert Background */
+        .snow-desert {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: url('https://www.example.com/desert-snow.png') no-repeat center center;
+            background-size: cover;
+            z-index: -2;
+        }
+
+        /* Main content styling */
         .login-container {
+            position: relative;
             background: #fff;
-            padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 320px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 360px;
             text-align: left;
+            padding: 20px;
+            z-index: 2;
         }
-        .login-form input[type="text"],
+
+        /* Computer Illustration */
+        .computer-screen {
+            background: url('https://www.example.com/computer.png') no-repeat center center;
+            background-size: contain;
+            width: 100%;
+            height: 200px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        /* Login Form */
+        .login-form input[type="text"], 
         .login-form input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
+            padding: 12px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box;
         }
-        .login-form input[type="checkbox"] {
-            margin-right: 8px;
-        }
+
         .login-form button {
             width: 100%;
-            padding: 10px;
-            background: #2ecc71;
+            padding: 12px;
+            background-color: #2ecc71;
             color: #fff;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
             font-size: 16px;
+            cursor: pointer;
         }
+
         .login-form button:hover {
             background: #27ae60;
         }
+
         .forgot-password {
             float: right;
             color: #2ecc71;
-            text-decoration: none;
             font-size: 12px;
         }
-        .forgot-password:hover {
-            text-decoration: underline;
+
+        /* Snowflakes animation */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
         }
-        .sso-options {
-            margin-top: 20px;
-            text-align: center;
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            opacity: 0.7;
+            animation: snowfall linear infinite;
+            z-index: 1;
         }
-        .sso-options a {
-            display: inline-block;
-            padding: 10px;
-            background: #fff;
-            color: #757575;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 14px;
+
+        .snowflake:nth-child(odd) {
+            animation-duration: 10s;
         }
-        .sso-options a:hover {
-            background: #f9f9f9;
+
+        .snowflake:nth-child(even) {
+            animation-duration: 12s;
         }
+
     </style>
 </head>
 <body>
+    <!-- Snow Desert -->
+    <div class="snow-desert"></div>
+    
+    <!-- Snowflakes Animation -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Login Form Container -->
     <div class="login-container">
-        <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
-            <div>
-                <label>Email</label>
-                <input type="text" id="email" placeholder="Enter your email address" required>
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-            </div>
-            <div style="margin: 10px 0;">
-                <input type="checkbox" id="rememberMe">
-                <label for="rememberMe">Remember me</label>
-                <a href="#" class="forgot-password">Forgot password?</a>
-            </div>
-            <button type="submit">Sign in</button>
-        </form>
-        <div class="sso-options">
-            <p>or continue with</p>
-            <a href="#" onclick="handleSSOLogin('google')">
-                <img src="https://www.google.com/favicon.ico" alt="Google" style="vertical-align: middle; width: 16px; height: 16px;"> Sign in with Google
-            </a>
+        <div class="computer-screen">
+            <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+                <div>
+                    <label>Email</label>
+                    <input type="text" id="email" placeholder="Enter your email address" required>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div style="margin: 10px 0;">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit">Sign in</button>
+            </form>
         </div>
-        <div id="status" style="margin-top: 10px; color: #2ecc71; font-size: 12px;"></div>
     </div>
 
     <script>
+        // Handle login logic
         function handleLogin(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
@@ -112,21 +173,75 @@
                 localStorage.setItem('loggedIn', 'true');
                 window.location.href = 'index.html';
             } else {
-                document.getElementById('status').textContent = 'Invalid email or password!';
+                alert('Invalid email or password!');
             }
         }
 
-        function handleSSOLogin(provider) {
-            document.getElementById('status').textContent = `Redirecting to ${provider} SSO...`;
-            setTimeout(() => {
-                if (Math.random() > 0.2) {
-                    localStorage.setItem('loggedIn', 'true');
-                    window.location.href = 'index.html';
-                } else {
-                    document.getElementById('status').textContent = 'SSO failed, please try again.';
-                }
-            }, 1500);
+        // Snowflakes animation logic
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        let snowflakes = [];
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            createSnowflakes(width < 600 ? 70 : 150);
         }
+
+        function createSnowflakes(count) {
+            snowflakes = [];
+            for (let i = 0; i < count; i++) {
+                snowflakes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 3 + 1,
+                    speed: Math.random() * 1 + 0.5,
+                    drift: Math.random() * 1 - 0.5,
+                });
+            }
+        }
+
+        function drawSnowflakes() {
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            for (const flake of snowflakes) {
+                ctx.moveTo(flake.x, flake.y);
+                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+            }
+            ctx.fill();
+        }
+
+        function updateSnowflakes() {
+            for (const flake of snowflakes) {
+                flake.y += flake.speed;
+                flake.x += flake.drift;
+
+                if (flake.y > height) {
+                    flake.y = -flake.radius;
+                    flake.x = Math.random() * width;
+                }
+                if (flake.x > width) flake.x = 0;
+                else if (flake.x < 0) flake.x = width;
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            drawSnowflakes();
+            updateSnowflakes();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animate();
     </script>
 </body>
 </html>
