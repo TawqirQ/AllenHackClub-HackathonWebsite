@@ -260,6 +260,7 @@ canvas.height = height;
 
 let snowflakes = [];
 let icicles = [];
+let header = document.querySelector('header');
 
 // Create snowflakes
 function createSnowflakes(count) {
@@ -275,12 +276,14 @@ function createSnowflakes(count) {
   }
 }
 
-// Create icicles
+// Create fixed icicles at the bottom of the header
 function createIcicles(count) {
   icicles = [];
+  const headerBottom = header.offsetHeight;
   for (let i = 0; i < count; i++) {
     icicles.push({
       x: Math.random() * width,
+      y: headerBottom, // hang from bottom of header
       length: Math.random() * 50 + 30,
       width: Math.random() * 6 + 2,
       cracks: Math.floor(Math.random() * 3 + 1)
@@ -303,15 +306,15 @@ function drawSnowflakes() {
 function drawIcicles() {
   for (const ice of icicles) {
     // main blue icicle
-    let gradient = ctx.createLinearGradient(ice.x, 0, ice.x, ice.length);
+    let gradient = ctx.createLinearGradient(ice.x, ice.y, ice.x, ice.y + ice.length);
     gradient.addColorStop(0, 'rgba(173, 216, 255, 0.9)');
     gradient.addColorStop(1, 'rgba(0, 102, 255, 0.7)');
     ctx.fillStyle = gradient;
     
     ctx.beginPath();
-    ctx.moveTo(ice.x, 0);
-    ctx.lineTo(ice.x + ice.width/2, ice.length);
-    ctx.lineTo(ice.x - ice.width/2, ice.length);
+    ctx.moveTo(ice.x, ice.y);
+    ctx.lineTo(ice.x + ice.width/2, ice.y + ice.length);
+    ctx.lineTo(ice.x - ice.width/2, ice.y + ice.length);
     ctx.closePath();
     ctx.fill();
 
@@ -320,8 +323,8 @@ function drawIcicles() {
     ctx.lineWidth = 1;
     for (let c=0; c<ice.cracks; c++){
       let crackX = ice.x + (Math.random()-0.5)*ice.width/1.5;
-      let crackY1 = Math.random()*ice.length*0.3;
-      let crackY2 = ice.length;
+      let crackY1 = ice.y + Math.random()*ice.length*0.3;
+      let crackY2 = ice.y + ice.length;
       ctx.beginPath();
       ctx.moveTo(crackX, crackY1);
       ctx.lineTo(crackX + (Math.random()-0.5)*5, crackY2);
@@ -366,6 +369,5 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 animate();
 </script>
-
 </body>
 </html>
