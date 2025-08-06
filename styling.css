@@ -1,5 +1,6 @@
-/* Reset and base */
-/* Reset & base styles */
+/* ==========================
+   Reset & Base Styles
+========================== */
 * {
   margin: 0;
   padding: 0;
@@ -7,33 +8,48 @@
 }
 
 body, html {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
   background: linear-gradient(to bottom, #91d0ed, #addcf5);
   color: #222;
+  line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
-/* Header */
+/* ==========================
+   Header
+========================== */
 header {
   text-align: center;
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
+  padding: 3rem 1rem;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+header h1 {
+  font-size: 2.6rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
 }
 
 header .login {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .login-btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #00ff88;
   color: #000;
   font-weight: bold;
   border-radius: 6px;
   text-decoration: none;
   transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
 .login-btn:hover {
@@ -41,65 +57,127 @@ header .login {
   transform: scale(1.05);
 }
 
-/* Main content */
+/* ==========================
+   Main Content
+========================== */
 main {
-  padding: 2rem;
+  padding: 3rem 2rem;
+  color: #222;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 section {
-  margin: 2rem 0;
+  margin: 3rem 0;
 }
 
-/* Hero section */
+/* Hero Section */
 .hero {
-  text-align: center;
-}
-
-.cta {
   text-align: center;
   margin-top: 2rem;
 }
 
+.hero h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #111;
+}
+
+/* Call To Action */
+.cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
 .cta-btn {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 14px 28px;
   background-color: #000;
   color: #00ff88;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.1rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.3);
   transition: all 0.3s ease;
 }
 
 .cta-btn:hover {
-  box-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88;
-  transform: scale(1.05);
+  box-shadow: 0 0 25px #00ff88, 0 0 35px #00ff88;
+  transform: scale(1.07);
 }
 
-/* FAQ */
-.faq {
+/* FAQ Section */
+#faq h2 {
+  font-size: 2rem;
   margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.faq {
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .faq h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.7rem;
+  color: #000;
 }
 
 .faq p {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  color: #222;
+}
+
+/* About & Contact Sections */
+#about h2,
+#contact h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+#about p,
+#contact p {
+  font-size: 1.1rem;
+  color: #222;
+  max-width: 800px;
+  margin: 0.5rem auto;
+}
+
+#contact a {
+  color: #000;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+#contact a:hover {
+  color: #00ff88;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   background-color: #f2f2f2;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  color: #222;
+  margin-top: 3rem;
 }
 
-/* Canvas background (matrix/snow) */
+/* ==========================
+   Canvas Background (Snow)
+========================== */
 #matrix {
   position: fixed;
   top: 0;
