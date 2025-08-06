@@ -312,16 +312,23 @@ function drawIcicles() {
 }
 
 // Update snowflakes
-function updateSnowflakes() {
-  for (const flake of snowflakes) {
-    flake.y += flake.speed;
-    flake.x += flake.drift;
+// Draw icicles from bottom of header
+function drawIcicles() {
+  const headerBottom = document.querySelector('header').getBoundingClientRect().bottom;
+  ctx.fillStyle = 'rgba(173, 216, 230, 0.8)'; // icy blue
+  ctx.shadowColor = 'rgba(0, 150, 255, 0.5)';
+  ctx.shadowBlur = 10; // subtle 3D effect
 
-    if (flake.y > height) flake.y = -flake.radius;
-    if (flake.x > width) flake.x = 0;
-    else if (flake.x < 0) flake.x = width;
+  for (const ice of icicles) {
+    ctx.beginPath();
+    ctx.moveTo(ice.x, headerBottom); // start at bottom of header
+    ctx.lineTo(ice.x + ice.width / 2, headerBottom + ice.length);
+    ctx.lineTo(ice.x - ice.width / 2, headerBottom + ice.length);
+    ctx.closePath();
+    ctx.fill();
   }
 }
+
 
 // Animate everything
 function animate() {
