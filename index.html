@@ -32,6 +32,8 @@
       background-color: rgba(0, 0, 0, 0.65);
       color: #fff;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
     }
 
     header h1 {
@@ -72,6 +74,8 @@
       color: #222;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     section {
@@ -175,21 +179,27 @@
       font-size: 0.95rem;
       color: #222;
       margin-top: 3rem;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Canvas Background (Snow) */
+    /* ==========================
+       Canvas Background (Snow)
+    ========================== */
     #matrix {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1;
+      z-index: 0; /* above gradient but below content */
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-    <canvas id="matrix"></canvas>
+  <canvas id="matrix"></canvas>
+
   <header>
     <h1>AHC Hackathon 2025</h1>
     <p>Organized by the AHS Hack Club Dev Team • Date: TBD</p>
@@ -197,8 +207,6 @@
       <a href="login.html" class="login-btn">Login</a>
     </section>
   </header>
-
-
 
   <main>
     <section class="hero">
