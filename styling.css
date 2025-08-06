@@ -1,62 +1,53 @@
 /* Reset and base */
+/* Reset & base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
-body {
-  background: linear-gradient(to bottom, #91d0ed, #addcf5);
-  color: #000;
+body, html {
+  font-family: Arial, sans-serif;
   overflow-x: hidden;
-}
-
-/* Canvas background */
-#matrix {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  display: block;
+  background: linear-gradient(to bottom, #91d0ed, #addcf5);
+  color: #222;
 }
 
 /* Header */
 header {
   text-align: center;
-  padding: 2em 1em;
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #000;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
 }
 
-header h1,
-header p {
-  margin: 0;
-}
-
-.login {
-  text-align: right;
-  margin: 15px;
-  padding: 2em 1em;
+header .login {
+  margin-top: 1rem;
 }
 
 .login-btn {
-  color: #00ff88;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00ff88;
+  color: #000;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-/* Main layout */
+.login-btn:hover {
+  background-color: #00cc6a;
+  transform: scale(1.05);
+}
+
+/* Main content */
 main {
-  padding: 3rem 1rem;
-  max-width: 1000px;
-  margin: auto;
+  padding: 2rem;
 }
 
-/* Section spacing */
 section {
-  margin-bottom: 4rem;
+  margin: 2rem 0;
 }
 
 /* Hero section */
@@ -64,136 +55,56 @@ section {
   text-align: center;
 }
 
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #000;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: #000;
-  margin-bottom: 1.5rem;
-}
-
-/* CTA button */
 .cta {
   text-align: center;
+  margin-top: 2rem;
 }
 
 .cta-btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #000;         
-  color: #00ff88;                    
+  background-color: #000;
+  color: #00ff88;
   text-decoration: none;
   font-weight: bold;
   border-radius: 8px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); 
-  margin-top: 1rem;
-  text-shadow:
-    0 0 5px #00ff88,
-    0 0 10px #00ff88,
-    0 0 15px #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  transition: all 0.3s ease;
 }
 
 .cta-btn:hover {
   box-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88;
   transform: scale(1.05);
-  text-shadow:
-    0 0 10px #00ff88,
-    0 0 20px #00ff88,
-    0 0 30px #00ff88,
-    0 0 40px #00ff88;
 }
 
-/* FAQ section */
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #000;
+/* FAQ */
+.faq {
+  margin-bottom: 1.5rem;
 }
 
 .faq h3 {
-  color: #000;
-  margin-bottom: 0.2rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
 .faq p {
-  margin-bottom: 1.2rem;
-  color: #000;
-}
-
-/* Contact section */
-#contact a {
-  color: #000;
-  text-decoration: underline;
+  font-size: 0.95rem;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  font-size: 0.9rem;
-  background-color: #f2f2f2;
   padding: 1rem;
-  color: #000;
+  background-color: #f2f2f2;
+  font-size: 0.9rem;
 }
 
-/* Glowing text for headings */
-h1, h2, h3 {
-  color: #00ff88; 
-  text-shadow:
-    0 0 5px #00ff88,
-    0 0 10px #00ff88,
-    0 0 20px #00ff88,
-    0 0 40px #00ff88;
-}
-
-/* Override glowing text for certain sections */
-#about h2,
-#faq h2,
-#faq h3,
-#contact h2 {
-  color: #000 !important;
-  text-shadow: none !important;
-}
-
-/* Snow Pads with realistic icicles */
-.snow-pad {
-  position: absolute;
-  width: 120px;
-  height: 30px;
-  background: #fff;
-  border-radius: 8px;
-  z-index: 1;
-  overflow: visible;
-}
-
-.snow-pad::after {
-  content: '';
-  position: absolute;
-  top: 100%;
+/* Canvas background (matrix/snow) */
+#matrix {
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%;
-  height: 40px;
-  background: radial-gradient(circle at 50% 0%, rgba(173, 216, 255, 0.8), rgba(0, 191, 255, 0.9));
-  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-  box-shadow:
-    inset -2px -2px 4px rgba(255,255,255,0.5),
-    inset 2px 2px 6px rgba(0,191,255,0.4);
-}
-
-.snow-pad::before {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 20%;
-  width: 15%;
-  height: 35px;
-  background: radial-gradient(circle at 50% 0%, rgba(173, 216, 255, 0.8), rgba(0, 191, 255, 0.9));
-  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-  box-shadow:
-    inset -1px -1px 2px rgba(255,255,255,0.6),
-    inset 1px 1px 3px rgba(0,191,255,0.5);
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
