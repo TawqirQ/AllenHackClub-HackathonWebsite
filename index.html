@@ -4,78 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Allen Hack Club - Hackathon</title>
+  <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #91d0ed, #addcf5);
-    }
-
-    #matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-    }
-
-    header {
-      text-align: center;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-    }
-
-    main {
-      padding: 2rem;
-      color: #222;
-    }
-
-    section {
-      margin: 2rem 0;
-    }
-
-    .hero {
-      text-align: center;
-    }
-
-    .cta {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .faq {
-      margin-bottom: 1.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #f2f2f2;
-      font-size: 0.9rem;
-    }
-
-    .cta-btn {
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: #000;
-      color: #00ff88;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-      margin-top: 1rem;
-      transition: all 0.3s ease;
-    }
-    .cta-btn:hover {
-      box-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88;
-      transform: scale(1.05);
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -150,7 +80,6 @@
       createSnowPads(width < 600 ? 5 : 10);
     }
 
-    // Snowflakes
     function createSnowflakes(count) {
       snowflakes = [];
       for (let i = 0; i < count; i++) {
@@ -178,16 +107,12 @@
       for (const flake of snowflakes) {
         flake.y += flake.speed;
         flake.x += flake.drift;
-        if (flake.y > height) {
-          flake.y = -flake.radius;
-          flake.x = Math.random() * width;
-        }
+        if (flake.y > height) flake.y = -flake.radius;
         if (flake.x > width) flake.x = 0;
         else if (flake.x < 0) flake.x = width;
       }
     }
 
-    // Snow Pads + Icicles
     function createSnowPads(count) {
       snowPads = [];
       for (let i = 0; i < count; i++) {
@@ -208,7 +133,6 @@
 
     function drawSnowPads() {
       snowPads.forEach(pad => {
-        // Draw icy snow pad with gradient
         let gradPad = ctx.createLinearGradient(pad.x, pad.y, pad.x, pad.y + pad.h);
         gradPad.addColorStop(0, 'rgba(240,248,255,0.9)');
         gradPad.addColorStop(1, 'rgba(173,216,250,0.8)');
@@ -218,7 +142,6 @@
         ctx.fillRect(pad.x, pad.y, pad.w, pad.h);
         ctx.shadowBlur = 0;
 
-        // Draw 3D icy icicles
         pad.icicles.forEach(icicle => {
           let x = pad.x + icicle.xOffset;
           let y = pad.y + pad.h;
@@ -233,7 +156,6 @@
           ctx.closePath();
           ctx.fill();
 
-          // Inner highlight for icy look
           ctx.beginPath();
           ctx.moveTo(x, y);
           ctx.lineTo(x + 2, y + icicle.length);
@@ -258,5 +180,4 @@
     animate();
   </script>
 </body>
-</html>
 </html>
