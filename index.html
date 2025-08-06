@@ -1,374 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Allen Hack Club - Hackathon</title>
-<style>
-/* ==========================
-   Reset & Base Styles
-========================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Allen Hack Club - Hackathon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body, html {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
-  background: linear-gradient(to bottom, #91d0ed, #addcf5);
-  color: #222;
-  line-height: 1.6;
-  scroll-behavior: smooth;
-}
+    body, html {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(to bottom, #91d0ed, #addcf5);
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
 
-/* ==========================
-   Header
-========================== */
-header {
-  text-align: center;
-  padding: 3rem 1rem 5rem 1rem; /* extra bottom padding for icicles */
-  background-color: rgba(0, 0, 0, 0.65);
-  color: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  position: relative;
-  z-index: 1;
-}
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
+    }
 
-header h1 {
-  font-size: 2.6rem;
-  margin-bottom: 0.5rem;
-}
+    header h1 { font-size: 2.6rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1.2rem; }
+    header .login { margin-top: 1.5rem; }
 
-header p {
-  font-size: 1.2rem;
-}
+    .login-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #00ff88;
+      color: #000;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
 
-header .login {
-  margin-top: 1.5rem;
-}
+    .login-btn:hover {
+      background-color: #00cc6a;
+      transform: scale(1.05);
+    }
 
-.login-btn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #00ff88;
-  color: #000;
-  font-weight: bold;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
+    main {
+      padding: 3rem 2rem;
+      color: #222;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-.login-btn:hover {
-  background-color: #00cc6a;
-  transform: scale(1.05);
-}
+    section { margin: 3rem 0; }
+    .hero { text-align: center; margin-top: 2rem; }
+    .hero h2 { font-size: 2.8rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #111; }
 
-/* ==========================
-   Main Content
-========================== */
-main {
-  padding: 3rem 2rem;
-  color: #222;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
+    .cta { text-align: center; margin-top: 2.5rem; }
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background-color: #000;
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0, 255, 136, 0.3);
+      transition: all 0.3s ease;
+    }
 
-section {
-  margin: 3rem 0;
-}
+    .cta-btn:hover {
+      box-shadow: 0 0 25px #00ff88, 0 0 35px #00ff88;
+      transform: scale(1.07);
+    }
 
-.hero {
-  text-align: center;
-  margin-top: 2rem;
-}
+    #faq h2, #about h2, #contact h2 { font-size: 2rem; margin-bottom: 1rem; color: #000; }
+    .faq { margin-bottom: 2rem; padding: 1rem 1.5rem; background-color: rgba(255,255,255,0.85); border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .faq h3 { font-size: 1.3rem; margin-bottom: 0.7rem; color: #000; }
+    .faq p { font-size: 1.05rem; color: #222; }
+    #about p, #contact p { font-size: 1.1rem; color: #222; max-width: 800px; margin: 0.5rem auto; }
+    #contact a { color: #000; text-decoration: underline; font-weight: bold; }
+    #contact a:hover { color: #00ff88; }
 
-.hero h2 {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-}
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background-color: #f2f2f2;
+      font-size: 0.95rem;
+      color: #222;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
 
-.hero p {
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto;
-  color: #111;
-}
-
-.cta {
-  text-align: center;
-  margin-top: 2.5rem;
-}
-
-.cta-btn {
-  display: inline-block;
-  padding: 14px 28px;
-  background-color: #000;
-  color: #00ff88;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0, 255, 136, 0.3);
-  transition: all 0.3s ease;
-}
-
-.cta-btn:hover {
-  box-shadow: 0 0 25px #00ff88, 0 0 35px #00ff88;
-  transform: scale(1.07);
-}
-
-#faq h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #000;
-}
-
-.faq {
-  margin-bottom: 2rem;
-  padding: 1rem 1.5rem;
-  background-color: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.faq h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.7rem;
-  color: #000;
-}
-
-.faq p {
-  font-size: 1.05rem;
-  color: #222;
-}
-
-#about h2,
-#contact h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #000;
-}
-
-#about p,
-#contact p {
-  font-size: 1.1rem;
-  color: #222;
-  max-width: 800px;
-  margin: 0.5rem auto;
-}
-
-#contact a {
-  color: #000;
-  text-decoration: underline;
-  font-weight: bold;
-}
-
-#contact a:hover {
-  color: #00ff88;
-}
-
-footer {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  background-color: #f2f2f2;
-  font-size: 0.95rem;
-  color: #222;
-  margin-top: 3rem;
-  position: relative;
-  z-index: 1;
-}
-
-/* ==========================
-   Canvas Background
-========================== */
-#matrix {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0; /* behind content */
-  pointer-events: none;
-}
-</style>
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-<canvas id="matrix"></canvas>
+  <canvas id="matrix"></canvas>
 
-<header>
-  <h1>AHC Hackathon 2025</h1>
-  <p>Organized by the AHS Hack Club Dev Team • Date: TBD</p>
-  <section class="login">
-    <a href="login.html" class="login-btn">Login</a>
-  </section>
-</header>
+  <header>
+    <h1>AHC Hackathon 2025</h1>
+    <p>Organized by the AHS Hack Club Dev Team • Date: TBD</p>
+    <section class="login">
+      <a href="login.html" class="login-btn">Login</a>
+    </section>
+  </header>
 
-<main>
-  <section class="hero">
-    <h2>Code. Create. Collaborate.</h2>
-    <p>Join students across Allen and beyond for a day of hacking, learning, and innovation. Beginners welcome!</p>
-  </section>
+  <main>
+    <section class="hero">
+      <h2>Code. Create. Collaborate.</h2>
+      <p>Join students across Allen and beyond for a day of hacking, learning, and innovation. Beginners welcome!</p>
+    </section>
 
-  <section class="cta">
-    <a href="#register" class="cta-btn">Reserve your spot</a>
-  </section>
+    <section class="cta">
+      <a href="#register" class="cta-btn">Reserve your spot</a>
+    </section>
 
-  <section id="about">
-    <h2>About the Hackathon</h2>
-    <p>The AHC Hackathon is a student-led tech event filled with workshops, snacks, prizes, and collaboration. Whether you're a beginner or advanced, you'll have an amazing time building cool projects with others!</p>
-  </section>
+    <section id="about">
+      <h2>About the Hackathon</h2>
+      <p>The AHC Hackathon is a student-led tech event filled with workshops, snacks, prizes, and collaboration. Whether you're a beginner or advanced, you'll have an amazing time building cool projects with others!</p>
+    </section>
 
-  <section id="faq">
-    <h2>FAQs</h2>
-    <div class="faq">
-      <h3>Do I need experience?</h3>
-      <p>Nope! We'll have mentors and beginner-friendly workshops to help you out.</p>
-    </div>
-    <div class="faq">
-      <h3>What should I bring?</h3>
-      <p>Bring a laptop, charger, and enthusiasm. We'll provide food and Wi-Fi.</p>
-    </div>
-    <div class="faq">
-      <h3>Can I work in a team?</h3>
-      <p>Yes! Teams of up to 4 are allowed, or you can go solo. We’ll have team formation activities too.</p>
-    </div>
-  </section>
+    <section id="faq">
+      <h2>FAQs</h2>
+      <div class="faq">
+        <h3>Do I need experience?</h3>
+        <p>Nope! We'll have mentors and beginner-friendly workshops to help you out.</p>
+      </div>
+      <div class="faq">
+        <h3>What should I bring?</h3>
+        <p>Bring a laptop, charger, and enthusiasm. We'll provide food and Wi-Fi.</p>
+      </div>
+      <div class="faq">
+        <h3>Can I work in a team?</h3>
+        <p>Yes! Teams of up to 4 are allowed, or you can go solo. We’ll have team formation activities too.</p>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Have questions? Reach out at <a href="mailto:allenhackclub@gmail.com">allenhackclub@gmail.com</a></p>
-  </section>
-</main>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Have questions? Reach out at <a href="mailto:allenhackclub@gmail.com">allenhackclub@gmail.com</a></p>
+    </section>
+  </main>
 
-<footer>
-  &copy; 2025 Allen Hack Club | Built with ❤️ by the Dev Team.
-</footer>
+  <footer>
+    &copy; 2025 Allen Hack Club | Built with ❤️ by the Dev Team.
+  </footer>
 
-<script>
-const canvas = document.getElementById('matrix');
-const ctx = canvas.getContext('2d');
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
 
-let width = window.innerWidth;
-let height = window.innerHeight;
-canvas.width = width;
-canvas.height = height;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
 
-let snowflakes = [];
-let icicles = [];
-let header = document.querySelector('header');
+    let snowflakes = [];
 
-// Create snowflakes
-function createSnowflakes(count) {
-  snowflakes = [];
-  for (let i = 0; i < count; i++) {
-    snowflakes.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 3 + 1,
-      speed: Math.random() * 1 + 0.5,
-      drift: Math.random() * 0.5 - 0.25,
-    });
-  }
-}
-
-// Create fixed icicles at the bottom of the header
-function createIcicles(count) {
-  icicles = [];
-  const icicleBaseY = 160; // fixed y position from top of canvas (matches header bottom)
-  for (let i = 0; i < count; i++) {
-    icicles.push({
-      x: Math.random() * width,
-      y: icicleBaseY, // fixed, does not change with scroll
-      length: Math.random() * 50 + 30,
-      width: Math.random() * 6 + 2,
-      cracks: Math.floor(Math.random() * 3 + 1)
-    });
-  }
-}
-
-
-// Draw snowflakes
-function drawSnowflakes() {
-  ctx.fillStyle = 'white';
-  ctx.beginPath();
-  for (const flake of snowflakes) {
-    ctx.moveTo(flake.x, flake.y);
-    ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-  }
-  ctx.fill();
-}
-
-// Draw realistic icicles
-function drawIcicles() {
-  for (const ice of icicles) {
-    // main blue icicle
-    let gradient = ctx.createLinearGradient(ice.x, ice.y, ice.x, ice.y + ice.length);
-    gradient.addColorStop(0, 'rgba(173, 216, 255, 0.9)');
-    gradient.addColorStop(1, 'rgba(0, 102, 255, 0.7)');
-    ctx.fillStyle = gradient;
-    
-    ctx.beginPath();
-    ctx.moveTo(ice.x, ice.y);
-    ctx.lineTo(ice.x + ice.width/2, ice.y + ice.length);
-    ctx.lineTo(ice.x - ice.width/2, ice.y + ice.length);
-    ctx.closePath();
-    ctx.fill();
-
-    // draw cracks for 3D effect
-    ctx.strokeStyle = 'rgba(0,0,0,0.4)';
-    ctx.lineWidth = 1;
-    for (let c=0; c<ice.cracks; c++){
-      let crackX = ice.x + (Math.random()-0.5)*ice.width/1.5;
-      let crackY1 = ice.y + Math.random()*ice.length*0.3;
-      let crackY2 = ice.y + ice.length;
-      ctx.beginPath();
-      ctx.moveTo(crackX, crackY1);
-      ctx.lineTo(crackX + (Math.random()-0.5)*5, crackY2);
-      ctx.stroke();
+    function createSnowflakes(count) {
+      snowflakes = [];
+      for (let i = 0; i < count; i++) {
+        snowflakes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 3 + 1,
+          speed: Math.random() * 1 + 0.5,
+          drift: Math.random() * 0.5 - 0.25,
+        });
+      }
     }
-  }
-}
 
-// Update snowflakes
-function updateSnowflakes() {
-  for (const flake of snowflakes) {
-    flake.y += flake.speed;
-    flake.x += flake.drift;
+    function drawSnowflakes() {
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      for (const flake of snowflakes) {
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+      }
+      ctx.fill();
+    }
 
-    if (flake.y > height) flake.y = -flake.radius;
-    if (flake.x > width) flake.x = 0;
-    else if (flake.x < 0) flake.x = width;
-  }
-}
+    function updateSnowflakes() {
+      for (const flake of snowflakes) {
+        flake.y += flake.speed;
+        flake.x += flake.drift;
 
-// Animate everything
-function animate() {
-  ctx.clearRect(0, 0, width, height);
-  drawIcicles();
-  drawSnowflakes();
-  updateSnowflakes();
-  requestAnimationFrame(animate);
-}
+        if (flake.y > height) flake.y = -flake.radius;
+        if (flake.x > width) flake.x = 0;
+        else if (flake.x < 0) flake.x = width;
+      }
+    }
 
-// Handle resize
-function resizeCanvas() {
-  width = window.innerWidth;
-  height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
-  createSnowflakes(width < 600 ? 70 : 150);
-  createIcicles(width < 600 ? 15 : 30);
-}
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      drawSnowflakes();
+      updateSnowflakes();
+      requestAnimationFrame(animate);
+    }
 
-window.addEventListener('resize', resizeCanvas);
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      createSnowflakes(width < 600 ? 70 : 150);
+    }
 
-resizeCanvas();
-animate();
-</script>
+    window.addEventListener('resize', resizeCanvas);
+
+    resizeCanvas();
+    animate();
+  </script>
 </body>
 </html>
