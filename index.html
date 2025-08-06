@@ -20,18 +20,17 @@
       scroll-behavior: smooth;
     }
 
-   header {
+  header {
   text-align: center;
-  padding: 3rem 1rem;
-  background-color: rgba(255, 255, 255, 0.1); /* light, transparent */
-  color: #fff;
-  backdrop-filter: blur(10px); /* blurry effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 1.5rem 1rem; /* smaller padding */
+  color: #fff;          /* text color only */
+  backdrop-filter: none; /* no blur background */
+  -webkit-backdrop-filter: none;
+  box-shadow: none;      /* remove shadow if desired */
   position: relative;
   z-index: 1;
+  background: transparent; /* ensure no background */
 }
-
 
     header h1 { font-size: 2.6rem; margin-bottom: 0.5rem; }
     header p { font-size: 1.2rem; }
