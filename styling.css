@@ -168,3 +168,43 @@ h1, h2, h3 {
   color: #000 !important;
   text-shadow: none !important;
 }
+/* Snow pad with icicles effect */
+.snow-pad {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px; /* height of snow pad */
+  background: #fff;
+  z-index: -1;
+  overflow: visible;
+}
+
+/* Icicles */
+.snow-pad::before {
+  content: '';
+  position: absolute;
+  bottom: -20px; /* extend below the snow pad */
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fff 0px,
+    #fff 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  clip-path: polygon(
+    0% 0%,
+    10% 100%,
+    20% 0%,
+    30% 100%,
+    40% 0%,
+    50% 100%,
+    60% 0%,
+    70% 100%,
+    80% 0%,
+    90% 100%,
+    100% 0%
+  );
+}
