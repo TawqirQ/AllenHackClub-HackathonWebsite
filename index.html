@@ -279,17 +279,18 @@ function createSnowflakes(count) {
 // Create fixed icicles at the bottom of the header
 function createIcicles(count) {
   icicles = [];
-  const headerBottom = header.offsetHeight;
+  const icicleBaseY = 160; // fixed y position from top of canvas (matches header bottom)
   for (let i = 0; i < count; i++) {
     icicles.push({
       x: Math.random() * width,
-      y: headerBottom, // hang from bottom of header
+      y: icicleBaseY, // fixed, does not change with scroll
       length: Math.random() * 50 + 30,
       width: Math.random() * 6 + 2,
       cracks: Math.floor(Math.random() * 3 + 1)
     });
   }
 }
+
 
 // Draw snowflakes
 function drawSnowflakes() {
