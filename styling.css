@@ -7,8 +7,6 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
   background: linear-gradient(to bottom, #91d0ed, #addcf5);
   color: #000;
   overflow-x: hidden;
@@ -45,8 +43,7 @@ header p {
   padding: 2em 1em;
 }
 
-.login-btn
-{
+.login-btn {
   color: #00ff88;
 }
 
@@ -87,19 +84,28 @@ section {
 .cta-btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #000000;         /* Black button */
-  color: #00ff88;                    /* Green text */
+  background-color: #000;         
+  color: #00ff88;                    
   text-decoration: none;
   font-weight: bold;
   border-radius: 8px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); /* soft green glow */
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); 
   margin-top: 1rem;
+  text-shadow:
+    0 0 5px #00ff88,
+    0 0 10px #00ff88,
+    0 0 15px #00ff88;
 }
 
 .cta-btn:hover {
-  box-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; /* stronger green glow on hover */
+  box-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88;
   transform: scale(1.05);
+  text-shadow:
+    0 0 10px #00ff88,
+    0 0 20px #00ff88,
+    0 0 30px #00ff88,
+    0 0 40px #00ff88;
 }
 
 /* FAQ section */
@@ -133,9 +139,10 @@ footer {
   padding: 1rem;
   color: #000;
 }
+
 /* Glowing text for headings */
 h1, h2, h3 {
-  color: #00ff88; /* Neon green base color */
+  color: #00ff88; 
   text-shadow:
     0 0 5px #00ff88,
     0 0 10px #00ff88,
@@ -143,24 +150,7 @@ h1, h2, h3 {
     0 0 40px #00ff88;
 }
 
-/* Make the CTA button text glow even more */
-.cta-btn {
-  color: #00ff88;
-  text-shadow:
-    0 0 5px #00ff88,
-    0 0 10px #00ff88,
-    0 0 15px #00ff88;
-}
-
-/* Optional: stronger glow on hover */
-.cta-btn:hover {
-  text-shadow:
-    0 0 10px #00ff88,
-    0 0 20px #00ff88,
-    0 0 30px #00ff88,
-    0 0 40px #00ff88;
-}
-/* Override glowing text for these sections */
+/* Override glowing text for certain sections */
 #about h2,
 #faq h2,
 #faq h3,
@@ -168,6 +158,7 @@ h1, h2, h3 {
   color: #000 !important;
   text-shadow: none !important;
 }
+
 /* Snow Pads with realistic icicles */
 .snow-pad {
   position: absolute;
@@ -205,18 +196,4 @@ h1, h2, h3 {
   box-shadow:
     inset -1px -1px 2px rgba(255,255,255,0.6),
     inset 1px 1px 3px rgba(0,191,255,0.5);
-}
-
-/* Snowflakes Canvas */
-#matrix {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  display: block;
-}
-
 }
