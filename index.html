@@ -20,15 +20,18 @@
       scroll-behavior: smooth;
     }
 
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background-color: rgba(0, 0, 0, 0.65);
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      position: relative;
-      z-index: 1;
-    }
+   header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1); /* light, transparent */
+  color: #fff;
+  backdrop-filter: blur(10px); /* blurry effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
 
     header h1 { font-size: 2.6rem; margin-bottom: 0.5rem; }
     header p { font-size: 1.2rem; }
