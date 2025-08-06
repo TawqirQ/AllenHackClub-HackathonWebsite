@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Allen Hack Club - Hackathon</title>
-  <link rel="stylesheet" href="styling.css" />
   <style>
     body, html {
       margin: 0;
       padding: 0;
       overflow-x: hidden;
       font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #91d0ed, #addcf5);
     }
 
     #matrix {
@@ -57,6 +57,23 @@
       background-color: #f2f2f2;
       font-size: 0.9rem;
     }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #000;
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+    .cta-btn:hover {
+      box-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -64,7 +81,7 @@
     <h1>AHC Hackathon 2025</h1>
     <p>Organized by the AHS Hack Club Dev Team • Date: TBD</p>
     <section class="login">
-      <a href= "login.html" class="login-btn">Login</a>
+      <a href="login.html" class="login-btn">Login</a>
     </section>
   </header>
 
@@ -121,6 +138,7 @@
     canvas.height = height;
 
     let snowflakes = [];
+    let snowPads = [];
 
     function resizeCanvas() {
       width = window.innerWidth;
@@ -128,8 +146,10 @@
       canvas.width = width;
       canvas.height = height;
       createSnowflakes(width < 600 ? 70 : 150);
+      createSnowPads(width < 600 ? 5 : 10);
     }
 
+    // Snowflakes
     function createSnowflakes(count) {
       snowflakes = [];
       for (let i = 0; i < count; i++) {
@@ -157,7 +177,6 @@
       for (const flake of snowflakes) {
         flake.y += flake.speed;
         flake.x += flake.drift;
-
         if (flake.y > height) {
           flake.y = -flake.radius;
           flake.x = Math.random() * width;
@@ -167,18 +186,76 @@
       }
     }
 
+    // Snow Pads + Icicles
+    function createSnowPads(count) {
+      snowPads = [];
+      for (let i = 0; i < count; i++) {
+        let padWidth = 80 + Math.random() * 60;
+        let padHeight = 15 + Math.random() * 10;
+        snowPads.push({
+          x: Math.random() * (width - padWidth),
+          y: height - padHeight - Math.random() * 50,
+          w: padWidth,
+          h: padHeight,
+          icicles: Array.from({ length: 3 + Math.floor(Math.random() * 3) }, () => ({
+            xOffset: Math.random() * padWidth,
+            length: 15 + Math.random() * 25
+          }))
+        });
+      }
+    }
+
+    function drawSnowPads() {
+      snowPads.forEach(pad => {
+        // Draw icy snow pad with gradient
+        let gradPad = ctx.createLinearGradient(pad.x, pad.y, pad.x, pad.y + pad.h);
+        gradPad.addColorStop(0, 'rgba(240,248,255,0.9)');
+        gradPad.addColorStop(1, 'rgba(173,216,250,0.8)');
+        ctx.fillStyle = gradPad;
+        ctx.shadowColor = 'rgba(173,216,250,0.5)';
+        ctx.shadowBlur = 15;
+        ctx.fillRect(pad.x, pad.y, pad.w, pad.h);
+        ctx.shadowBlur = 0;
+
+        // Draw 3D icy icicles
+        pad.icicles.forEach(icicle => {
+          let x = pad.x + icicle.xOffset;
+          let y = pad.y + pad.h;
+          let grad = ctx.createLinearGradient(x, y, x, y + icicle.length);
+          grad.addColorStop(0, 'rgba(173,216,250,1)');
+          grad.addColorStop(1, 'rgba(0,191,255,0.6)');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + 6, y + icicle.length);
+          ctx.lineTo(x - 6, y + icicle.length);
+          ctx.closePath();
+          ctx.fill();
+
+          // Inner highlight for icy look
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + 2, y + icicle.length);
+          ctx.lineTo(x - 2, y + icicle.length);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(255,255,255,0.5)';
+          ctx.fill();
+        });
+      });
+    }
+
     function animate() {
       ctx.clearRect(0, 0, width, height);
       drawSnowflakes();
       updateSnowflakes();
+      drawSnowPads();
       requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     animate();
-
   </script>
-      <div class="snow-pad"></div>
 </body>
+</html>
 </html>
