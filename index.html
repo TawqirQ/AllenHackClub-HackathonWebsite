@@ -250,69 +250,102 @@
   </footer>
 
   <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
+let width = window.innerWidth;
+let height = window.innerHeight;
+canvas.width = width;
+canvas.height = height;
 
-    let snowflakes = [];
+let snowflakes = [];
+let icicles = [];
 
-    function createSnowflakes(count) {
-      snowflakes = [];
-      for (let i = 0; i < count; i++) {
-        snowflakes.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 3 + 1,
-          speed: Math.random() * 1 + 0.5,
-          drift: Math.random() * 0.5 - 0.25,
-        });
-      }
-    }
+// Create snowflakes
+function createSnowflakes(count) {
+  snowflakes = [];
+  for (let i = 0; i < count; i++) {
+    snowflakes.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 3 + 1,
+      speed: Math.random() * 1 + 0.5,
+      drift: Math.random() * 0.5 - 0.25,
+    });
+  }
+}
 
-    function drawSnowflakes() {
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'white';
-      ctx.beginPath();
-      for (const flake of snowflakes) {
-        ctx.moveTo(flake.x, flake.y);
-        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-      }
-      ctx.fill();
-    }
+// Create icicles
+function createIcicles(count) {
+  icicles = [];
+  for (let i = 0; i < count; i++) {
+    icicles.push({
+      x: Math.random() * width,
+      length: Math.random() * 50 + 30,
+      width: Math.random() * 4 + 2,
+    });
+  }
+}
 
-    function updateSnowflakes() {
-      for (const flake of snowflakes) {
-        flake.y += flake.speed;
-        flake.x += flake.drift;
+// Draw snowflakes
+function drawSnowflakes() {
+  ctx.fillStyle = 'white';
+  ctx.beginPath();
+  for (const flake of snowflakes) {
+    ctx.moveTo(flake.x, flake.y);
+    ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+  }
+  ctx.fill();
+}
 
-        if (flake.y > height) flake.y = -flake.radius;
-        if (flake.x > width) flake.x = 0;
-        else if (flake.x < 0) flake.x = width;
-      }
-    }
+// Draw icicles
+function drawIcicles() {
+  ctx.fillStyle = 'rgba(173, 216, 230, 0.7)'; // icy blue
+  for (const ice of icicles) {
+    ctx.beginPath();
+    ctx.moveTo(ice.x, 0);
+    ctx.lineTo(ice.x + ice.width / 2, ice.length);
+    ctx.lineTo(ice.x - ice.width / 2, ice.length);
+    ctx.closePath();
+    ctx.fill();
+  }
+}
 
-    function animate() {
-      drawSnowflakes();
-      updateSnowflakes();
-      requestAnimationFrame(animate);
-    }
+// Update snowflakes
+function updateSnowflakes() {
+  for (const flake of snowflakes) {
+    flake.y += flake.speed;
+    flake.x += flake.drift;
 
-    function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      createSnowflakes(width < 600 ? 70 : 150);
-    }
+    if (flake.y > height) flake.y = -flake.radius;
+    if (flake.x > width) flake.x = 0;
+    else if (flake.x < 0) flake.x = width;
+  }
+}
 
-    window.addEventListener('resize', resizeCanvas);
+// Animate everything
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  drawIcicles();
+  drawSnowflakes();
+  updateSnowflakes();
+  requestAnimationFrame(animate);
+}
 
-    resizeCanvas();
-    animate();
-  </script>
+// Handle resize
+function resizeCanvas() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+  createSnowflakes(width < 600 ? 70 : 150);
+  createIcicles(width < 600 ? 15 : 30);
+}
+
+window.addEventListener('resize', resizeCanvas);
+
+resizeCanvas();
+animate();
+</script>
 </body>
 </html>
