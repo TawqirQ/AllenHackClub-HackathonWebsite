@@ -20,17 +20,17 @@
       scroll-behavior: smooth;
     }
 
-  header {
-  text-align: center;
-  padding: 1.5rem 1rem; /* smaller padding */
-  color: #d6edf0;          /* text color only */
-  backdrop-filter: none; /* no blur background */
-  -webkit-backdrop-filter: none;
-  box-shadow: none;      /* remove shadow if desired */
-  position: relative;
-  z-index: 1;
-  background: transparent; /* ensure no background */
-}
+    header {
+      text-align: center;
+      padding: 1.5rem 1rem; /* smaller padding */
+      color: #d6edf0;          /* text color only */
+      backdrop-filter: none; /* no blur background */
+      -webkit-backdrop-filter: none;
+      box-shadow: none;      /* remove shadow if desired */
+      position: relative; /* changed */
+      z-index: 10;        /* changed: higher than main */
+      background: transparent; /* ensure no background */
+    }
 
     header h1 { font-size: 2.6rem; margin-bottom: 0.5rem; }
     header p { font-size: 1.2rem; }
@@ -58,27 +58,27 @@
       color: #222;
       max-width: 1200px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
+      position: relative;  /* changed */
+      z-index: 1;          /* changed */
     }
 
     #about {
-  text-align: center; /* center everything inside the section */
-  margin: 3rem 0;
-}
+      text-align: center; /* center everything inside the section */
+      margin: 3rem 0;
+    }
 
-#about h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #000;
-}
+    #about h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #000;
+    }
 
-#about p {
-  font-size: 1.1rem;
-  color: #222;
-  max-width: 800px;
-  margin: 0.5rem auto; /* centers the paragraph */
-}
+    #about p {
+      font-size: 1.1rem;
+      color: #222;
+      max-width: 800px;
+      margin: 0.5rem auto; /* centers the paragraph */
+    }
 
     section { margin: 3rem 0; }
     .hero { text-align: center; margin-top: 2rem; }
@@ -124,7 +124,7 @@
     }
     #contact p {
       text-align: left;
-      margin: 0.5 rem 2rem;
+      margin: 0.5rem 2rem; /* fixed typo: no space */
       max-width: none;
     }
 
@@ -138,154 +138,153 @@
       pointer-events: none;
     }
     /* Ornaments container */
-.ornament-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 10;
-  pointer-events: none;
-}
+    .ornament-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      z-index: 10;
+      pointer-events: none;
+    }
 
-.ornament {
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .ornament {
+      position: absolute;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-/* Hanging thread */
-.thread {
-  width: 2px;
-  background: white;
-  opacity: 0.6;
-}
+    /* Hanging thread */
+    .thread {
+      width: 2px;
+      background: white;
+      opacity: 0.6;
+    }
 
-/* Frosted glass ornament */
-/* Glass-ball sizes and positioning */
-.glass-ball {
-  position: relative; /* Make sure it’s relative for layers */
-  border-radius: 50%;
-  background-color: rgba(170, 220, 255, 0.3); /* light blue transparent */
-  backdrop-filter: blur(8px);
-  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.7);
-  background-image:
-    /* veiny cracks pattern */
-    linear-gradient(25deg, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%),
-    linear-gradient(-15deg, transparent 47%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0.12) 50%, transparent 51%),
-    linear-gradient(75deg, transparent 46%, rgba(255,255,255,0.1) 47%, rgba(255,255,255,0.1) 49%, transparent 50%),
-    linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.13) 46%, rgba(255,255,255,0.13) 48%, transparent 49%);
-  
-  background-size:
-    30px 30px,
-    30px 30px,
-    100px 100px,
-    100px 100px;
-  
-  background-position:
-    0 0,
-    15px 15px,
-    30% 30%,
-    70% 60%;
-  
-  background-repeat: repeat;
-  mix-blend-mode: lighten;
-  color: #004488;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-}
+    /* Frosted glass ornament */
+    /* Glass-ball sizes and positioning */
+    .glass-ball {
+      position: relative; /* Make sure it’s relative for layers */
+      border-radius: 50%;
+      background-color: rgba(170, 220, 255, 0.3); /* light blue transparent */
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.7);
+      background-image:
+        /* veiny cracks pattern */
+        linear-gradient(25deg, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%),
+        linear-gradient(-15deg, transparent 47%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0.12) 50%, transparent 51%),
+        linear-gradient(75deg, transparent 46%, rgba(255,255,255,0.1) 47%, rgba(255,255,255,0.1) 49%, transparent 50%),
+        linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.13) 46%, rgba(255,255,255,0.13) 48%, transparent 49%);
+      
+      background-size:
+        30px 30px,
+        30px 30px,
+        100px 100px,
+        100px 100px;
+      
+      background-position:
+        0 0,
+        15px 15px,
+        30% 30%,
+        70% 60%;
+      
+      background-repeat: repeat;
+      mix-blend-mode: lighten;
+      color: #004488;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+    }
 
-/* Sizes */
-.glass-ball.large {
-  width: 240px;
-  height: 240px;
-  font-size: 4rem; /* bigger tree emoji */
-}
+    /* Sizes */
+    .glass-ball.large {
+      width: 240px;
+      height: 240px;
+      font-size: 4rem; /* bigger tree emoji */
+    }
 
-.glass-ball.small {
-  width: 160px;
-  height: 160px;
-  font-size: 3rem; /* smaller tree emoji */
-}
+    .glass-ball.small {
+      width: 160px;
+      height: 160px;
+      font-size: 3rem; /* smaller tree emoji */
+    }
 
-/* Ornament container alignment fix */
-.ornament {
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-}
+    /* Ornament container alignment fix */
+    .ornament {
+      position: absolute;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+    }
 
-/* Position left and right explicitly */
-.ornament.left {
-  left: 5%;
-}
+    /* Position left and right explicitly */
+    .ornament.left {
+      left: 5%;
+    }
 
-.ornament.right {
-  right: 5%;
-}
+    .ornament.right {
+      right: 5%;
+    }
 
-/* Thread styling */
-.thread {
-  width: 2px;
-  background: white;
-  opacity: 0.6;
-  margin-bottom: 10px;
-}
+    /* Thread styling */
+    .thread {
+      width: 2px;
+      background: white;
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
 
+    .glass-ball.large {
+      width: 240px;
+      height: 240px;
+      font-size: 72px;
+    }
 
+    .glass-ball.small {
+      width: 160px;
+      height: 160px;
+    }
+    .frosted-panel {
+      position: relative;
+      padding: 2rem;
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      background-color: rgba(170, 220, 255, 0.1);
+      overflow: hidden;
+      z-index: 1; /* <- ADD THIS */
+    }
 
-.glass-ball.large {
-  width: 240px;
-  height: 240px;
-  font-size: 72px;
-}
-
-.glass-ball.small {
-  width: 160px;
-  height: 160px;
-}
- .frosted-panel {
-  position: relative;
-  padding: 2rem;
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  background-color: rgba(170, 220, 255, 0.1);
-  overflow: hidden;
-  z-index: 1; /* <- ADD THIS */
-}
-
-  .frosted-panel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px);
-  pointer-events: none;
-  z-index: 0;
-}
+    .frosted-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px);
+      pointer-events: none;
+      z-index: 0;
+    }
   </style>
 </head>
 <body>
   <header>
     <canvas id="matrix"></canvas>
     <div class="ornament-container">
-  <!-- Left ornament -->
-  <div class="ornament left" style="top: 0;">
-  <div class="thread" style="height: 150px;"></div>
-  <div class="glass-ball large">🌲</div>
-</div>
+      <!-- Left ornament -->
+      <div class="ornament left" style="top: 0;">
+        <div class="thread" style="height: 150px;"></div>
+        <div class="glass-ball large">🌲</div>
+      </div>
 
-<div class="ornament right" style="top: 0;">
-  <div class="thread" style="height: 100px;"></div>
-  <div class="glass-ball small">🌲</div>
-</div>
+      <div class="ornament right" style="top: 0;">
+        <div class="thread" style="height: 100px;"></div>
+        <div class="glass-ball small">🌲</div>
+      </div>
+    </div>
     <h1>AHC Hackathon 2025</h1>
     <p>Organized by the AHS Hack Club Dev Team • Date: TBD</p>
     <section class="login">
@@ -305,8 +304,8 @@
 
     <section id="about">
       <div class="frosted-panel">
-      <h2>About the Hackathon</h2>
-      <p>The AHC Hackathon is a student-led tech event filled with workshops, snacks, prizes, and collaboration. Whether you're a beginner or advanced, you'll have an amazing time building cool projects with others!</p>
+        <h2>About the Hackathon</h2>
+        <p>The AHC Hackathon is a student-led tech event filled with workshops, snacks, prizes, and collaboration. Whether you're a beginner or advanced, you'll have an amazing time building cool projects with others!</p>
       </div>
     </section>
 
@@ -393,12 +392,12 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      createSnowflakes(width < 600 ? 70 : 150);
+      createSnowflakes(150);
     }
 
     window.addEventListener('resize', resizeCanvas);
 
-    resizeCanvas();
+    createSnowflakes(150);
     animate();
   </script>
 </body>
