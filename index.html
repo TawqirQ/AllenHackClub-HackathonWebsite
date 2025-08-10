@@ -164,18 +164,45 @@
 
 /* Frosted glass ornament */
 .glass-ball {
-  content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   backdrop-filter: blur(8px);
+  background-color: rgba(170, 220, 255, 0.1);
   background-image:
     repeating-linear-gradient(60deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 8px),
     repeating-linear-gradient(120deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 8px),
     radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05), transparent 50%);
-  background-size: cover;
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05), transparent 50%),
+
+    /* Veiny cracks layers: */
+    linear-gradient(25deg, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%),
+    linear-gradient(-15deg, transparent 47%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0.12) 50%, transparent 51%),
+    linear-gradient(75deg, transparent 46%, rgba(255,255,255,0.1) 47%, rgba(255,255,255,0.1) 49%, transparent 50%),
+    linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.13) 46%, rgba(255,255,255,0.13) 48%, transparent 49%);
+  
+  background-size:
+    30px 30px,
+    30px 30px,
+    100px 100px,
+    100px 100px,
+    200px 200px,
+    180px 180px,
+    220px 220px,
+    200px 200px;
+  
+  background-position:
+    0 0,
+    15px 15px,
+    30% 30%,
+    70% 60%,
+    10% 20%,
+    50% 10%,
+    80% 60%,
+    40% 80%;
+  
+  background-repeat: repeat;
   mix-blend-mode: lighten;
 }
 
@@ -191,25 +218,25 @@
   height: 160px;
 }
  .frosted-panel {
-    position: relative;
-    padding: 2rem;
-    border-radius: 16px;
-    backdrop-filter: blur(12px);
-    background-color: rgba(170, 220, 255, 0.1);
-    overflow: hidden;
-  }
+  position: relative;
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  background-color: rgba(170, 220, 255, 0.1);
+  overflow: hidden;
+  z-index: 1; /* <- ADD THIS */
+}
 
   .frosted-panel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 6px),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 6px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px);
+  pointer-events: none;
+  z-index: 0;
+}
   </style>
 </head>
 <body>
