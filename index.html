@@ -163,20 +163,15 @@
 }
 
 /* Frosted glass ornament */
+/* Glass-ball sizes and positioning */
 .glass-ball {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+  position: relative; /* Make sure it’s relative for layers */
+  border-radius: 50%;
+  background-color: rgba(170, 220, 255, 0.3); /* light blue transparent */
   backdrop-filter: blur(8px);
-  background-color: rgba(170, 220, 255, 0.1);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.7);
   background-image:
-    repeating-linear-gradient(60deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 8px),
-    repeating-linear-gradient(120deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 8px),
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.05), transparent 50%),
-
-    /* Veiny cracks layers: */
+    /* veiny cracks pattern */
     linear-gradient(25deg, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%),
     linear-gradient(-15deg, transparent 47%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0.12) 50%, transparent 51%),
     linear-gradient(75deg, transparent 46%, rgba(255,255,255,0.1) 47%, rgba(255,255,255,0.1) 49%, transparent 50%),
@@ -186,25 +181,63 @@
     30px 30px,
     30px 30px,
     100px 100px,
-    100px 100px,
-    200px 200px,
-    180px 180px,
-    220px 220px,
-    200px 200px;
+    100px 100px;
   
   background-position:
     0 0,
     15px 15px,
     30% 30%,
-    70% 60%,
-    10% 20%,
-    50% 10%,
-    80% 60%,
-    40% 80%;
+    70% 60%;
   
   background-repeat: repeat;
   mix-blend-mode: lighten;
+  color: #004488;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
 }
+
+/* Sizes */
+.glass-ball.large {
+  width: 240px;
+  height: 240px;
+  font-size: 4rem; /* bigger tree emoji */
+}
+
+.glass-ball.small {
+  width: 160px;
+  height: 160px;
+  font-size: 3rem; /* smaller tree emoji */
+}
+
+/* Ornament container alignment fix */
+.ornament {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Position left and right explicitly */
+.ornament.left {
+  left: 5%;
+}
+
+.ornament.right {
+  right: 5%;
+}
+
+/* Thread styling */
+.thread {
+  width: 2px;
+  background: white;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
 
 
 .glass-ball.large {
@@ -244,16 +277,14 @@
     <canvas id="matrix"></canvas>
     <div class="ornament-container">
   <!-- Left ornament -->
-  <div class="ornament" style="left: 5%;">
-    <div class="thread" style="height: 150px;"></div>
-    <div class="glass-ball large">🌲</div>
-  </div>
+  <div class="ornament left" style="top: 0;">
+  <div class="thread" style="height: 150px;"></div>
+  <div class="glass-ball large">🌲</div>
+</div>
 
-  <!-- Right ornament -->
-  <div class="ornament" style="right: 5%;">
-    <div class="thread" style="height: 100px;"></div>
-    <div class="glass-ball small">🌲</div>
-  </div>
+<div class="ornament right" style="top: 0;">
+  <div class="thread" style="height: 100px;"></div>
+  <div class="glass-ball small">🌲</div>
 </div>
     <h1>AHC Hackathon 2025</h1>
     <p>Organized by the AHS Hack Club Dev Team • Date: TBD</p>
