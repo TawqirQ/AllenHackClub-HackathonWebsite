@@ -1,404 +1,488 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Allen Hack Club - Hackathon</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZERO HOUR — Game Jam 2026</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg:#050505;
+      --muted:#bfbfbf;
+      --accent:#ffffff;
+      --glass: rgba(255,255,255,0.06);
+      --max-width:1100px;
     }
 
-    body, html {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
-      background: linear-gradient(to bottom, #91d0ed, #addcf5);
-      color: #222;
-      line-height: 1.6;
-      scroll-behavior: smooth;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #000 0%, #070707 60%, #090909 100%);
+      color:var(--accent);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    header {
-      text-align: center;
-      padding: 1.5rem 1rem; /* smaller padding */
-      color: #d6edf0;          /* text color only */
-      backdrop-filter: none; /* no blur background */
-      -webkit-backdrop-filter: none;
-      box-shadow: none;      /* remove shadow if desired */
-      position: relative; /* changed */
-      z-index: 10;        /* changed: higher than main */
-      background: transparent; /* ensure no background */
+    .container{
+      max-width:var(--max-width);
+      margin:40px auto;
+      padding:24px;
     }
 
-    header h1 { font-size: 2.6rem; margin-bottom: 0.5rem; }
-    header p { font-size: 1.2rem; }
-    header .login { margin-top: 1.5rem; }
-
-    .login-btn {
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: #0acbe5;
-      color: #000;
-      font-weight: bold;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1rem;
+    /* HERO / Poster mimic */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:12px;
+      background:var(--bg);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.8);
     }
 
-    .login-btn:hover {
-      background-color: #057cf4;
-      transform: scale(1.05);
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:40px;
+      align-items:center;
+      padding:48px;
     }
 
-    main {
-      padding: 3rem 2rem;
-      color: #222;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;  /* changed */
-      z-index: 1;          /* changed */
+    @media (max-width:900px){
+      .hero-grid{
+        grid-template-columns: 1fr;
+        padding:28px;
+      }
     }
 
-    #about {
-      text-align: center; /* center everything inside the section */
-      margin: 3rem 0;
+    .hero-left{
+      padding:16px 12px;
     }
 
-    #about h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #000;
+    .title{
+      font-family: "Playfair Display", serif;
+      font-weight:900;
+      font-size:86px;
+      line-height:0.9;
+      letter-spacing:2px;
+      margin:0 0 14px 0;
+      color: #fff;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.6);
     }
 
-    #about p {
-      font-size: 1.1rem;
-      color: #222;
-      max-width: 800px;
-      margin: 0.5rem auto; /* centers the paragraph */
+    @media (max-width:900px){
+      .title{font-size:54px; text-align:center}
     }
 
-    section { margin: 3rem 0; }
-    .hero { text-align: center; margin-top: 2rem; }
-    .hero h2 { font-size: 2.8rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #111; }
-
-    .cta { text-align: center; margin-top: 2.5rem; }
-    .cta-btn {
-      display: inline-block;
-      padding: 14px 28px;
-      background-color: #0acbe5;
-      color: #000000;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(0, 208, 255, 0.3);
-      transition: all 0.3s ease;
+    .tag{
+      font-size:18px;
+      letter-spacing:2px;
+      color:var(--muted);
+      margin-bottom:28px;
     }
 
-    .cta-btn:hover {
-      box-shadow: 0 0 25px #0048ff, 0 0 35px #0048ff;
-      transform: scale(1.07);
+    .lead{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.6;
+      max-width:640px;
     }
 
-    #faq h2, #about h2, #contact h2 { font-size: 2rem; margin-bottom: 1rem; color: #000; }
-    .faq { margin-bottom: 2rem; padding: 1rem 1.5rem; background-color: rgba(255,255,255,0.85); border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .faq h3 { font-size: 1.3rem; margin-bottom: 0.7rem; color: #000; }
-    .faq p { font-size: 1.05rem; color: #222; }
-    #about p, #contact p { font-size: 1.1rem; color: #222; max-width: 800px; margin: 0.5rem auto; }
-    #contact a { color: #000; text-decoration: underline; font-weight: bold; }
-    #contact a:hover { color: #00ff88; }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      background-color: #f2f2f2;
-      font-size: 0.95rem;
-      color: #222;
-      margin-top: 3rem;
-      position: relative;
-      z-index: 1;
-    }
-    #contact p {
-      text-align: left;
-      margin: 0.5rem 2rem; /* fixed typo: no space */
-      max-width: none;
+    /* controller image column (using uploaded poster as background) */
+    .hero-right{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
     }
 
-    #matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-    }
-    /* Ornaments container */
-    .ornament-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      z-index: 10;
-      pointer-events: none;
+    .poster{
+      width:100%;
+      max-width:420px;
+      border-radius:10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      transform: translateY(0);
+      transition: transform .35s ease;
     }
 
-    .ornament {
-      position: absolute;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .hero-right:hover .poster{ transform: translateY(-8px) }
+
+    /* content sections */
+    .sections{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:30px;
+      margin-top:28px;
     }
 
-    /* Hanging thread */
-    .thread {
-      width: 2px;
-      background: white;
-      opacity: 0.6;
+    @media (max-width:1000px){
+      .sections{ grid-template-columns: 1fr; }
     }
 
-    /* Frosted glass ornament */
-    /* Glass-ball sizes and positioning */
-    .glass-ball {
-      position: relative; /* Make sure it’s relative for layers */
-      border-radius: 50%;
-      background-color: rgba(170, 220, 255, 0.3); /* light blue transparent */
-      backdrop-filter: blur(8px);
-      box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.7);
-      background-image:
-        /* veiny cracks pattern */
-        linear-gradient(25deg, transparent 48%, rgba(255,255,255,0.15) 49%, rgba(255,255,255,0.15) 51%, transparent 52%),
-        linear-gradient(-15deg, transparent 47%, rgba(255,255,255,0.12) 48%, rgba(255,255,255,0.12) 50%, transparent 51%),
-        linear-gradient(75deg, transparent 46%, rgba(255,255,255,0.1) 47%, rgba(255,255,255,0.1) 49%, transparent 50%),
-        linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.13) 46%, rgba(255,255,255,0.13) 48%, transparent 49%);
-      
-      background-size:
-        30px 30px,
-        30px 30px,
-        100px 100px,
-        100px 100px;
-      
-      background-position:
-        0 0,
-        15px 15px,
-        30% 30%,
-        70% 60%;
-      
-      background-repeat: repeat;
-      mix-blend-mode: lighten;
-      color: #004488;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2.5rem;
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:10px;
+      padding:22px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 8px 30px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
     }
 
-    /* Sizes */
-    .glass-ball.large {
-      width: 240px;
-      height: 240px;
-      font-size: 4rem; /* bigger tree emoji */
+    h2.section-title{
+      font-family: "Playfair Display", serif;
+      font-size:22px;
+      margin:0 0 12px 0;
     }
 
-    .glass-ball.small {
-      width: 160px;
-      height: 160px;
-      font-size: 3rem; /* smaller tree emoji */
+    p.muted{ color:var(--muted); margin:0 0 12px 0 }
+
+    /* sponsors placeholder */
+    .sponsors-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .sponsor-slot{
+      background:var(--glass);
+      border: 1px dashed rgba(255,255,255,0.06);
+      padding:12px;
+      border-radius:8px;
+      text-align:center;
+      color:var(--muted);
+      min-height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    /* Ornament container alignment fix */
-    .ornament {
-      position: absolute;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      pointer-events: none;
+    /* location box */
+    .location-box{
+      background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.08));
+      border-radius:10px;
+      padding:12px;
+      color:var(--muted);
+      min-height:120px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      justify-content:center;
     }
 
-    /* Position left and right explicitly */
-    .ornament.left {
-      left: 5%;
+    .map-placeholder{
+      background: linear-gradient(180deg, #0b0b0b, #0f0f0f);
+      border-radius:8px;
+      height:86px;
+      border:1px solid rgba(255,255,255,0.03);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-size:14px;
     }
 
-    .ornament.right {
-      right: 5%;
+    /* register button */
+    .actions{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
-    /* Thread styling */
-    .thread {
-      width: 2px;
-      background: white;
-      opacity: 0.6;
-      margin-bottom: 10px;
+    .btn{
+      background:transparent;
+      color:var(--accent);
+      border:2px solid rgba(255,255,255,0.12);
+      padding:12px 20px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: all .18s ease;
+    }
+    .btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      border-color: rgba(255,255,255,0.22);
     }
 
-    .glass-ball.large {
-      width: 240px;
-      height: 240px;
-      font-size: 72px;
+    .btn-ghost{
+      border-style:solid;
+      background: rgba(255,255,255,0.03);
     }
 
-    .glass-ball.small {
-      width: 160px;
-      height: 160px;
-    }
-    .frosted-panel {
-      position: relative;
-      padding: 2rem;
-      border-radius: 16px;
-      backdrop-filter: blur(12px);
-      background-color: rgba(170, 220, 255, 0.1);
-      overflow: hidden;
-      z-index: 1; /* <- ADD THIS */
+    /* small footer */
+    footer{
+      margin-top:30px;
+      color:var(--muted);
+      text-align:center;
+      font-size:13px;
+      padding-bottom:40px;
     }
 
-    .frosted-panel::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px),
-        repeating-linear-gradient(-45deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 6px);
-      pointer-events: none;
-      z-index: 0;
+    /* modal */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      display:none;
+      background:rgba(0,0,0,0.6);
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      padding:20px;
     }
+    .modal{
+      width:100%;
+      max-width:640px;
+      background: #070707;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.04);
+      padding:22px;
+      box-shadow:0 30px 80px rgba(0,0,0,0.8);
+    }
+    .modal .close{
+      float:right;
+      opacity:.8;
+      cursor:pointer;
+      font-size:18px;
+      padding:6px;
+    }
+    .modal h3{ margin:0 0 10px 0; font-family: "Playfair Display", serif; }
+    .modal p{ color:var(--muted); margin:0 0 16px 0 }
+
+    .form-row{
+      display:flex;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .form-row input, .form-row select{
+      flex:1;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color:var(--accent);
+    }
+
+    /* tiny QR placeholder bottom-right inside hero */
+    .qr-mini{
+      position:absolute;
+      right:18px;
+      bottom:18px;
+      background:rgba(255,255,255,0.02);
+      padding:8px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.03);
+      text-align:center;
+      font-size:11px;
+      color:var(--muted);
+    }
+
   </style>
 </head>
 <body>
-  <header>
-    <canvas id="matrix"></canvas>
-    <div class="ornament-container">
-      <!-- Left ornament -->
-      <div class="ornament left" style="top: 0;">
-        <div class="thread" style="height: 150px;"></div>
-        <div class="glass-ball large">🌲</div>
+
+  <div class="container">
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h1 class="title">ZERO HOUR</h1>
+          <div class="tag">JOIN THE CORE. BUILD THE FUTURE.</div>
+          <p class="lead">
+            We are organizing a massive game jam in January 2026. Zero Hour is a collaborative 48–72 hour event for developers, artists, designers, and creators to prototype ambitious games and meet the community.
+            <br><br>
+            <strong>When:</strong> January 2026 • <strong>Duration:</strong> 48–72 hours • <strong>Format:</strong> Hybrid (onsite + online)
+          </p>
+
+          <div class="actions" aria-hidden="false">
+            <!-- Register button opens modal. Replace the link inside modal with your real Google Form. -->
+            <button class="btn btn-ghost" id="openRegisterBtn" aria-haspopup="dialog" aria-controls="registerModal">
+              ▶ Register
+            </button>
+
+            <a class="btn" href="#sponsors" title="Sponsors (placeholder)">Sponsors go here</a>
+            <a class="btn" href="#place" title="Place hosted (placeholder)">Place hosted here</a>
+          </div>
+
+        </div>
+
+        <div class="hero-right" aria-hidden="false">
+          <!-- Poster image (the one you uploaded). Use same filename or change src -->
+          <img src="IMG-20251023-WA0001.jpg" alt="ZERO HOUR poster with controller" class="poster" />
+
+          <div class="qr-mini">
+            Scan to register<br>
+            <small>(QR links to registration)</small>
+          </div>
+        </div>
       </div>
 
-      <div class="ornament right" style="top: 0;">
-        <div class="thread" style="height: 100px;"></div>
-        <div class="glass-ball small">🌲</div>
+      <!-- sections under the poster -->
+      <div class="container" style="padding-top:18px; padding-bottom:28px;">
+        <div class="sections">
+          <div class="card">
+            <h2 class="section-title">About Zero Hour</h2>
+            <p class="muted">Zero Hour is a community-first game jam bringing together students, indies, and studios. This page is a stub — replace placeholder text with real details.</p>
+
+            <h3 style="margin-top:12px; font-size:16px; font-weight:600;">Event Details</h3>
+            <ul style="color:var(--muted); padding-left:18px; line-height:1.6; margin-top:8px;">
+              <li><strong>Date:</strong> January 2026 (exact dates TBA)</li>
+              <li><strong>Format:</strong> Hybrid — onsite hub + online participation</li>
+              <li><strong>Tracks:</strong> Game Design, Art/Animation, Audio, Tools & Plugins</li>
+            </ul>
+
+            <div style="margin-top:16px;">
+              <a class="btn btn-ghost" href="#place">View Venue</a>
+              <a class="btn" href="#sponsors">See Sponsors</a>
+            </div>
+          </div>
+
+          <aside class="card" id="place" aria-label="Place hosted placeholder">
+            <h2 class="section-title">Place Hosted</h2>
+            <p class="muted">Place hosted here — replace this text with the venue name, address and logistics (parking, access, nearest transit).</p>
+
+            <div class="location-box" style="margin-top:10px;">
+              <div style="font-weight:600; color:#fff">VENUE NAME GOES HERE</div>
+              <div style="font-size:13px; color:var(--muted)">Address / City / State</div>
+
+              <div class="map-placeholder" aria-hidden="true">Map or embedded <code>iframe</code> goes here</div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- sponsors -->
+        <div style="margin-top:20px;">
+          <div class="card" id="sponsors" aria-label="Sponsors placeholder">
+            <h2 class="section-title">Sponsors</h2>
+            <p class="muted">Sponsors go here — add logos and links here when ready.</p>
+
+            <div class="sponsors-grid" style="margin-top:12px;">
+              <div class="sponsor-slot">Sponsor Logo 1</div>
+              <div class="sponsor-slot">Sponsor Logo 2</div>
+              <div class="sponsor-slot">Sponsor Logo 3</div>
+              <div class="sponsor-slot">Sponsor Logo 4</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- organizer / contact -->
+        <div style="margin-top:18px; display:flex; gap:18px; flex-wrap:wrap;">
+          <div class="card" style="flex:1;">
+            <h2 class="section-title">Organizers</h2>
+            <p class="muted">Organizer names and contact info go here.</p>
+            <p style="color:var(--muted); margin-top:8px">Email: <a href="mailto:organizers@example.com" style="color:var(--accent); text-decoration:underline;">organizers@example.com</a></p>
+          </div>
+
+          <div class="card" style="width:320px; min-width:260px;">
+            <h2 class="section-title">Quick Links</h2>
+            <p class="muted" style="margin-bottom:8px">Shortcuts to common pages</p>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <a class="btn" href="#sponsors">Sponsors go here</a>
+              <a class="btn" href="#place">Venue info</a>
+              <button class="btn btn-ghost" id="openRegisterBtn2">Register</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-    <h1>AHC Hackathon 2025</h1>
-    <p>Organized by the AHS Hack Club Dev Team • Date: TBD</p>
-    <section class="login">
-      <a href="login.html" class="login-btn">Login</a>
-    </section>
-  </header>
 
-  <main>
-    <section class="hero">
-      <h2>Code. Create. Collaborate.</h2>
-      <p>Join students across Allen and beyond for a day of hacking, learning, and innovation. Beginners welcome!</p>
-    </section>
+    <footer>
+      © Zero Hour — Game Jam 2026 • This site is a design mockup. Replace any placeholder links (e.g., the Google Form link) with your production URLs.
+    </footer>
+  </div>
 
-    <section class="cta">
-      <a href="#register" class="cta-btn">Reserve your spot</a>
-    </section>
+  <!-- Modal: Register -->
+  <div id="registerModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <div class="close" id="closeModal" title="Close">✕</div>
+      <h3 id="modalTitle">Register for Zero Hour — Game Jam</h3>
+      <p class="muted">Click the button below to open the registration form. Replace the placeholder Google Form URL in the code with your official form link.</p>
 
-    <section id="about">
-      <div class="frosted-panel">
-        <h2>About the Hackathon</h2>
-        <p>The AHC Hackathon is a student-led tech event filled with workshops, snacks, prizes, and collaboration. Whether you're a beginner or advanced, you'll have an amazing time building cool projects with others!</p>
-      </div>
-    </section>
+      <!-- Example small form to capture a few local fields (not submitted anywhere) -->
+      <form id="localRegForm" onsubmit="return false;">
+        <div class="form-row">
+          <input type="text" placeholder="Full name (optional sample)" aria-label="Full name">
+          <input type="email" placeholder="Email (optional sample)" aria-label="Email">
+        </div>
 
-    <section id="faq">
-      <h2>FAQs</h2>
-      <div class="faq">
-        <h3>Do I need experience?</h3>
-        <p>Nope! We'll have mentors and beginner-friendly workshops to help you out.</p>
-      </div>
-      <div class="faq">
-        <h3>What should I bring?</h3>
-        <p>Bring a laptop, charger, and enthusiasm. We'll provide food and Wi-Fi.</p>
-      </div>
-      <div class="faq">
-        <h3>Can I work in a team?</h3>
-        <p>Yes! Teams of up to 4 are allowed, or you can go solo. We’ll have team formation activities too.</p>
-      </div>
-    </section>
+        <div style="display:flex; gap:8px; margin-top:6px; align-items:center;">
+          <select aria-label="Participation type">
+            <option>Participation type (example)</option>
+            <option>Onsite</option>
+            <option>Online</option>
+            <option>Volunteer / Organizer</option>
+          </select>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Have questions? Reach out at <a href="mailto:allenhackclub@gmail.com">allenhackclub@gmail.com</a></p>
-    </section>
-  </main>
+          <select aria-label="Team or solo">
+            <option>Solo or Team (example)</option>
+            <option>Solo</option>
+            <option>Team</option>
+          </select>
+        </div>
 
-  <footer>
-    &copy; 2025 Allen Hack Club | Built with ❤️ by the Dev Team.
-  </footer>
+        <div style="margin-top:16px; display:flex; gap:10px; align-items:center;">
+          <!-- This is the button you'll update with your real Google Form URL -->
+          <a id="goToFormBtn" class="btn" href="https://forms.gle/REPLACE" target="_blank" rel="noopener noreferrer">
+            Go to registration form →
+          </a>
+
+          <button class="btn btn-ghost" id="closeModalBtn" type="button">Close</button>
+        </div>
+
+        <p class="muted" style="margin-top:10px; font-size:13px">If you prefer, link this button directly to your Google Form URL (edit the <code>href</code> in the HTML).</p>
+      </form>
+    </div>
+  </div>
 
   <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
+    // Modal open / close
+    const openBtns = [document.getElementById('openRegisterBtn'), document.getElementById('openRegisterBtn2')];
+    const modalBackdrop = document.getElementById('registerModal');
+    const closeModal = document.getElementById('closeModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-
-    let snowflakes = [];
-
-    function createSnowflakes(count) {
-      snowflakes = [];
-      for (let i = 0; i < count; i++) {
-        snowflakes.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 3 + 1,
-          speed: Math.random() * 1 + 0.5,
-          drift: Math.random() * 0.5 - 0.25,
-        });
-      }
+    function openModal(){
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.setAttribute('aria-hidden','false');
+    }
+    function hideModal(){
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden','true');
     }
 
-    function drawSnowflakes() {
-      ctx.fillStyle = 'white';
-      ctx.beginPath();
-      for (const flake of snowflakes) {
-        ctx.moveTo(flake.x, flake.y);
-        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-      }
-      ctx.fill();
-    }
+    openBtns.forEach(b=>{
+      if(b) b.addEventListener('click', openModal);
+    });
 
-    function updateSnowflakes() {
-      for (const flake of snowflakes) {
-        flake.y += flake.speed;
-        flake.x += flake.drift;
+    if(closeModal) closeModal.addEventListener('click', hideModal);
+    if(closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
 
-        if (flake.y > height) flake.y = -flake.radius;
-        if (flake.x > width) flake.x = 0;
-        else if (flake.x < 0) flake.x = width;
-      }
-    }
+    // close when clicking outside modal
+    modalBackdrop.addEventListener('click', (e)=>{
+      if(e.target === modalBackdrop) hideModal();
+    });
 
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      drawSnowflakes();
-      updateSnowflakes();
-      requestAnimationFrame(animate);
-    }
+    // keyboard escape to close
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') hideModal();
+    });
 
-    function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      createSnowflakes(150);
-    }
+    // small accessibility focus trap - focus modal when opened
+    openBtns.forEach(b=>{
+      if(b) b.addEventListener('click', ()=> {
+        setTimeout(()=> {
+          document.getElementById('goToFormBtn').focus();
+        }, 120);
+      });
+    });
 
-    window.addEventListener('resize', resizeCanvas);
-
-    createSnowflakes(150);
-    animate();
+    // NOTE: Replace the href on #goToFormBtn with your actual Google Form URL.
   </script>
 </body>
 </html>
